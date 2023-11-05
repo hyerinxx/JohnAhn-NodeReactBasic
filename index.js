@@ -1,3 +1,8 @@
+const mongoose = require('mongoose')
+mongoose.connect('mongodb+srv://hyerin:imhyerinsung@boiler-plate.8u0ihcn.mongodb.net/')
+.then(() => console.log('MongoDB Connected...'))
+.catch(error => console.log(error))
+
 const express = require('express')
 const app = express()
 const port = 5000
