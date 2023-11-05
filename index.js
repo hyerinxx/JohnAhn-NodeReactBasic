@@ -4,7 +4,8 @@ const port = 5000
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://hyerin:imhyerinsung@boiler-plate.8u0ihcn.mongodb.net/')
+const config = require('./config/key')
+mongoose.connect(config.mongoURI)
 .then(() => console.log('MongoDB Connected...'))
 .catch(error => console.log(error))
 
