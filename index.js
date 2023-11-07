@@ -18,11 +18,12 @@ app.use(bodyParser.json());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-const {User} = require("./models/User");
+const { User } = require("./models/User");
+const { auth } = require("./middleware/auth");
 
 app.get('/', (req, res) => res.send('Hello World! 안녕하세요! 😊'));
 
-app.post('/register', async (req, res) => {
+app.post('/api/users/register', async (req, res) => {
     //회원가입 시 필요한 정보를 client에서 가져와
     //이를 데이터베이스에 삽입한다.
 
@@ -38,7 +39,7 @@ app.post('/register', async (req, res) => {
     })
 });
 
-app.post('/login', async (req, res) => {
+app.post('/api/users/login', async (req, res) => {
     try {
         //사용자가 전송한 이메일 정보가 데이터베이스에 존재하는지 찾는다.
         const user = await User.findOne({email: req.body.email});
@@ -84,4 +85,18 @@ app.post('/login', async (req, res) => {
             message: "서버에서 오류가 발생했습니다."
         });
     }
+});
+
+app.get('/api/users/auth', auth, (req, res) => {
+    //여기까지 middleware를 통과했다는 것은 Authentication이 true라는 뜻이다.
+    res.status(200).json({
+        _id: req.user._id,
+        isAuth: true,
+        email: req.user.email,
+        firstname: req.user.firstname,
+        lastname: req.user.lastname,
+        role: req.user.role,
+        isAdmin: (req.user.role === 0) ? false : true,
+        image: req.user.image
+    });
 });
