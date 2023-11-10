@@ -100,3 +100,22 @@ app.get('/api/users/auth', auth, (req, res) => {
         image: req.user.image
     });
 });
+
+app.get('/api/users/logout', auth, async (req, res) => {
+    try {
+        const updateUser = await User.findOneAndUpdate(
+            {_id: req.user._id},
+            {token: ""}
+        );
+        if(updateUser) {
+            res.status(200).send({
+                success: true
+            });
+        }
+    } catch(error) {
+        res.json({
+            success: false,
+            error
+        });
+    }
+});
