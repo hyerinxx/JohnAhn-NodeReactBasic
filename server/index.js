@@ -108,12 +108,12 @@ app.get('/api/users/logout', auth, async (req, res) => {
             {token: ""}
         );
         if(updateUser) {
-            res.status(200).send({
+            return res.status(200).send({
                 success: true
             });
         }
     } catch(error) {
-        res.json({
+        return res.json({
             success: false,
             error
         });
