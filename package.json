@@ -4,15 +4,17 @@
   "description": "이화이언 웹개발팀 수습과제 8~9주차",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/index.js",
-    "backend": "nodemon ./server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/index.js",
+    "backend": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
   "author": "성혜린",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "concurrently": "^8.2.2",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
