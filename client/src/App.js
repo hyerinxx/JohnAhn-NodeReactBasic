@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
@@ -11,15 +10,13 @@ import Auth from "./hoc/auth";
 
 function App() {
   return (
-    <Router>
       <div>
         <Routes>
-          <Route path="/" element={Auth(LandingPage, null)} />
-          <Route path='/login' element={Auth(LoginPage, false)} />
-          <Route path='/register' element={Auth(RegisterPage, false)} />
+          <Route path="/" element={<Auth SpecificComponent={LandingPage} option={null} />} />
+          <Route path='/login' element={<Auth SpecificComponent={LoginPage} option={false} />} />
+          <Route path='/register' element={<Auth SpecificComponent={RegisterPage} option={false} />} />
         </Routes>
       </div>
-    </Router>
   );
 }
 
