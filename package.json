@@ -4,8 +4,8 @@
   "description": "이화이언 웹개발팀 수습과제 8~9주차",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "backend": "nodemon index.js",
+    "start": "node ./server/index.js",
+    "backend": "nodemon ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "성혜린",

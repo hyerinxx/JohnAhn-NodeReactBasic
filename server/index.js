@@ -119,3 +119,7 @@ app.get('/api/users/logout', auth, async (req, res) => {
         });
     }
 });
+
+app.get('/api/hello', (req, res) => {
+    res.send("안녕하세요! Hello입니다.");
+});
